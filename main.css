@@ -1,0 +1,19 @@
+/* stored score */
+td.saved {}
+
+/* hover on space you cannot score on */
+tr:hover .locked {
+    background-color: #f00;
+}
+
+/* possible score location */
+td.hide span {
+    visibility: hidden;
+}
+/* hovering over row shows score */
+tr:hover .hide {
+    background-color: #ff9;
+}
+tr:hover .hide span {
+    visibility: visible;
+}

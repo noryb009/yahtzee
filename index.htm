@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Yahtzee</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel=stylesheet href="//fonts.googleapis.com/css?family=Raleway:400,300,600">
+    <link rel=stylesheet href="lib/normalize.css">
+    <link rel=stylesheet href="lib/skeleton.css">
+    <link rel=stylesheet href="main.css">
+
+    <script type="text/html" id="row-header-template">
+        <th data-bind="text: l"></th>
+        <th data-bind="text: v"></th>
+    </script>
+    <script type="text/html" id="row-template">
+        <td data-bind="text: label"></td>
+        <!-- ko if: Number.isInteger(display) -->
+            <td class=saved data-bind="text: display"></td>
+        <!-- /ko -->
+        <!-- ko ifnot: Number.isInteger(display) -->
+            <!-- ko if: hover === false -->
+                <td class=locked></td>
+            <!-- /ko -->
+            <!-- ko ifnot: hover === false -->
+                <td class=hide><span data-bind="text: hover"></span></td>
+            <!-- /ko -->
+        <!-- /ko -->
+    </script>
+</head>
+<body>
+    <div class=container>
+        <div data-bind="foreach: dice().values">
+            <img data-bind="attr: {src: imgSource, alt: value}, click: toggleKeep"></span>
+        </div>
+        <table>
+            <tbody data-bind="foreach: display()">
+                <tr data-bind="template: {name: 'row-template'}, click: $parent.onClick"></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/knockout/3.2.0/knockout-min.js"></script>
+    <script src="dice.js"></script>
+    <script src="score.js"></script>
+    <script src="models/dice.js"></script>
+    <script src="models/board.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
