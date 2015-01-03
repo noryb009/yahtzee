@@ -70,7 +70,7 @@ var getScore = function(dice) {
         ret.straightL = SCORES.straightL;
 
     // small straight if at least 4 in a row, starting at 1, 2 or 3
-    for(var i = 0; i < 2; i++) {
+    for(var i = 0; i < 3; i++) {
         var valid = true;
         for(var j = i; j < i+4; j++) {
             if(ret.occur[j] === 0) {
