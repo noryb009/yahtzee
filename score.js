@@ -94,7 +94,7 @@ var removeAlreadyScored = function(score, board) {
     for(var item in board) {
         if(Array.isArray(board[item]))
             removeAlreadyScored(score[item], board[item]);
-        else if(board[item] !== null)
+        else if(board[item] !== null && score[item] !== true)
             score[item] = false;
     }
 }
@@ -112,18 +112,19 @@ var getValidScores = function(dice, board) {
     // is second yahtzee
     if(yahtzee === true && board.yahtzee !== null) {
         // if top is not scored
-        if(board.occur[dice[0]] === null) {
+        if(board.occur[dice[0]-1] === null) {
             // can only score in that spot
             var ret = fillBoard(false);
-            ret.occur[dice[0]] = score.occur[dice[0]];
-            ret.extraYahtzee = true;
+            ret.occur[dice[0]-1] = score.occur[dice[0]-1];
+            if(board.yahtzee === SCORES.yahtzee)
+                ret.extraYahtzee = true;
             return ret;
         }
         // top is scored, so can score anywhere in lower
         score.fullHouse = SCORES.fullHouse;
         score.straightS = SCORES.straightS;
         score.straightL = SCORES.straightL;
-        if(board.yahtzee !== 0)
+        if(board.yahtzee === SCORES.yahtzee)
             score.extraYahtzee = true;
     }
 

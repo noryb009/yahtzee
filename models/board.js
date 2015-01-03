@@ -102,9 +102,10 @@ var boardModel = function() {
         if(self.rollNumber() === 0 || row.index === undefined
           || self.indexToVal(self.score(), row.index) === false)
             return;
-        if(self.score()[row.index])
 
         self.saveAtIndex(self.board(), row.index, self.indexToVal(self.score(), row.index));
+        if(self.score().extraYahtzee === true)
+            self.board().extraYahtzee += 100;
         self.board.valueHasMutated();
 
         self.rollNumber(0);

@@ -1,23 +1,37 @@
 .center {
     text-align: center;
 }
+.right-block {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.score td:first-child {
+    padding-top: 2px;
+    padding-bottom: 2px;
+    text-align: right;
+}
+.score td:last-child {
+    padding: 2px 5px;
+    text-align: center;
+}
 
 /* stored score */
-td.saved {}
+.score td.saved {}
 
 /* hover on space you cannot score on */
-tr:hover .locked {
+.score tr:hover .locked {
     background-color: #f00;
 }
 
 /* possible score location */
-td.hide span {
+.score td.hide span {
     visibility: hidden;
 }
 /* hovering over row shows score */
-tr:hover .hide {
+.score tr:hover .hide {
     background-color: #ff9;
 }
-tr:hover .hide span {
+.score tr:hover .hide span {
     visibility: visible;
 }
