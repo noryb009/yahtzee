@@ -109,11 +109,18 @@ var boardModel = function() {
         self.board.valueHasMutated();
 
         self.rollNumber(0);
+
+        if(isGameFinished(self.board())) {
+            alert('You have ' + self.total() + ' points!');
+        }
     };
 
     self.onReroll = function() {
-        if(self.rollNumber() === 0)
+        if(self.rollNumber() === 0) {
+            if(isGameFinished(self.board()))
+                self.restart();
             self.dice().generate();
+        }
         else if(self.rollNumber() < 3)
             self.dice().regenerate();
         self.rollNumber(self.rollNumber()+1);

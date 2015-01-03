@@ -132,3 +132,15 @@ var getValidScores = function(dice, board) {
 
     return score;
 };
+
+var isGameFinished = function(board) {
+    for(var item in board) {
+        if(Array.isArray(board[item])) {
+            if(isGameFinished(board[item]) === false)
+                return false;
+        }
+        else if(board[item] === null)
+            return false;
+    }
+    return true;
+};
