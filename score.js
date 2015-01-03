@@ -103,6 +103,9 @@ var removeAlreadyScored = function(score, board) {
 //   the value of the location if the `dice' are scored there,
 //   or false if it can not be scored there
 var getValidScores = function(dice, board) {
+    if(occurrences(dice, 0) > 0)
+        return fillBoard(false);
+
     var score = getScore(dice);
     var yahtzee = (score.yahtzee === 0 ? false : true);
 

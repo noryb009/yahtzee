@@ -10,35 +10,29 @@
     <link rel=stylesheet href="lib/skeleton.css">
     <link rel=stylesheet href="main.css">
 
-    <script type="text/html" id="row-header-template">
-        <th data-bind="text: l"></th>
-        <th data-bind="text: v"></th>
-    </script>
     <script type="text/html" id="row-template">
         <td data-bind="text: label"></td>
-        <!-- ko if: Number.isInteger(display) -->
-            <td class=saved data-bind="text: display"></td>
-        <!-- /ko -->
-        <!-- ko ifnot: Number.isInteger(display) -->
-            <!-- ko if: hover === false -->
-                <td class=locked></td>
-            <!-- /ko -->
-            <!-- ko ifnot: hover === false -->
-                <td class=hide><span data-bind="text: hover"></span></td>
-            <!-- /ko -->
-        <!-- /ko -->
+        <td data-bind="attr: {class: style}"><span data-bind="text:display"></span></td>
     </script>
 </head>
 <body>
+    <h2 class=center>Yahtzee</h2>
     <div class=container>
-        <div data-bind="foreach: dice().values">
-            <img data-bind="attr: {src: imgSource, alt: value}, click: toggleKeep"></span>
+        <div class=row>
+            <div class="one-half column">
+                <div data-bind="foreach: dice().values">
+                    <img data-bind="attr: {src: imgSource, class: style, alt: value}, click: toggleKeep"></span>
+                </div>
+                <button id=reroll data-bind="text: btnText, click: onReroll, attr: {disabled: btnDisabled}"></button>
+            </div>
+            <div class="one-half column">
+                <table>
+                    <tbody data-bind="foreach: display()">
+                        <tr data-bind="template: {name: 'row-template'}, click: $parent.onClick"></tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <table>
-            <tbody data-bind="foreach: display()">
-                <tr data-bind="template: {name: 'row-template'}, click: $parent.onClick"></tr>
-            </tbody>
-        </table>
     </div>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/knockout/3.2.0/knockout-min.js"></script>

@@ -3,12 +3,17 @@ var dieModel = function() {
     self.value = ko.observable();
     self.keep = ko.observable();
 
+    self.restart = function() {
+        self.value(0);
+        self.keep(false);
+    };
+
     self.generate = function() {
         self.value(generateDie());
         self.keep(false);
     };
     self.regenerate = function() {
-        if(keep() === false)
+        if(self.keep() === false)
             self.value(generateDie());
     };
 
@@ -22,6 +27,12 @@ var dieModel = function() {
         src += ".png";
         return src;
     });
+    self.style = ko.pureComputed(function() {
+        if(self.keep() === true)
+            return 'unlocked';
+        else
+            return 'locked';
+    });
 }
 
 var diceModel = function() {
@@ -30,6 +41,12 @@ var diceModel = function() {
         new dieModel(), new dieModel(), new dieModel(),
         new dieModel(), new dieModel()
     ]);
+
+    self.restart = function() {
+        self.values().map(function(die) {
+            die.restart();
+        });
+    };
 
     self.generate = function() {
         self.values().map(function(die) {
