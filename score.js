@@ -133,6 +133,7 @@ var getValidScores = function(dice, board) {
     return score;
 };
 
+// determine if the game with `board' is finished
 var isGameFinished = function(board) {
     for(var item in board) {
         if(Array.isArray(board[item])) {
