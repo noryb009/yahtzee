@@ -27,7 +27,7 @@
 
 /* possible score location */
 .score td.hide span {
-    visibility: hidden;
+    color: #0d0;
 }
 /* hovering over row shows score */
 .score tr:hover .hide {
